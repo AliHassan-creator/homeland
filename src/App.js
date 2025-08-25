@@ -358,35 +358,112 @@ function PropertyCard({ property, grid }) {
   );
 }
 
-// Filter/Search Bar (dummy, UI only)
+// Filter/Search Bar (now functional)
 function PropertyFilterBar() {
+  const [filters, setFilters] = useState({
+    listingType: 'Condo',
+    offerType: 'For Sale',
+    city: 'New York'
+  });
+
+  const handleFilterChange = (filterType, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [filterType]: value
+    }));
+  };
+
+  const handleSearch = () => {
+    console.log('Searching with filters:', filters);
+    // You would implement actual filtering logic here
+  };
+
   return (
     <div className="property-filter-bar">
       <div className="property-filter-group">
         <label>LISTING TYPES</label>
-        <select>
+        <select 
+          value={filters.listingType} 
+          onChange={(e) => handleFilterChange('listingType', e.target.value)}
+          style={{
+            padding: '10px',
+            borderRadius: '4px',
+            border: '1px solid #ddd',
+            backgroundColor: 'white',
+            cursor: 'pointer',
+            appearance: 'menulist',
+            MozAppearance: 'menulist',
+            WebkitAppearance: 'menulist'
+          }}
+        >
           <option>Condo</option>
+          <option>Apartment</option>
+          <option>House</option>
+          <option>Villa</option>
+          <option>Commercial</option>
         </select>
       </div>
       <div className="property-filter-group">
         <label>OFFER TYPE</label>
-        <select>
+        <select 
+          value={filters.offerType} 
+          onChange={(e) => handleFilterChange('offerType', e.target.value)}
+          style={{
+            padding: '10px',
+            borderRadius: '4px',
+            border: '1px solid #ddd',
+            backgroundColor: 'white',
+            cursor: 'pointer',
+            appearance: 'menulist',
+            MozAppearance: 'menulist',
+            WebkitAppearance: 'menulist'
+          }}
+        >
           <option>For Sale</option>
+          <option>For Rent</option>
+          <option>For Lease</option>
         </select>
       </div>
       <div className="property-filter-group">
         <label>SELECT CITY</label>
-        <select>
+        <select 
+          value={filters.city} 
+          onChange={(e) => handleFilterChange('city', e.target.value)}
+          style={{
+            padding: '10px',
+            borderRadius: '4px',
+            border: '1px solid #ddd',
+            backgroundColor: 'white',
+            cursor: 'pointer',
+            appearance: 'menulist',
+            MozAppearance: 'menulist',
+            WebkitAppearance: 'menulist'
+          }}
+        >
           <option>New York</option>
+          <option>Los Angeles</option>
+          <option>Chicago</option>
+          <option>Miami</option>
+          <option>San Francisco</option>
+          <option>Boston</option>
         </select>
       </div>
-      <button className="property-search-btn">Search</button>
+      <button className="property-search-btn" onClick={handleSearch}>Search</button>
     </div>
   );
 }
-
 // Grid/List Toggle and Sort Bar
 function PropertyGridBar({ grid, setGrid }) {
+  const [sortBy, setSortBy] = useState('default');
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+
+  const handleSortChange = (value) => {
+    setSortBy(value);
+    setShowSortDropdown(false);
+    // You would implement actual sorting logic here
+    console.log('Sorting by:', value);
+  };
+
   return (
     <div className="property-grid-bar">
       <span
@@ -407,7 +484,77 @@ function PropertyGridBar({ grid, setGrid }) {
         <span className="property-sort-option active">All</span>
         <span className="property-sort-option">Rent</span>
         <span className="property-sort-option">Sale</span>
-        <span className="property-sort-option">Sort by <span style={{fontSize:'1.1em'}}>&#9662;</span></span>
+        <div 
+          className="property-sort-option" 
+          style={{ position: 'relative', cursor: 'pointer' }}
+          onClick={() => setShowSortDropdown(!showSortDropdown)}
+        >
+          Sort by <span style={{fontSize:'1.1em'}}>&#9662;</span>
+          
+          {showSortDropdown && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              backgroundColor: 'white',
+              border: '1px solid #ddd',
+              borderRadius: '4px',
+              padding: '10px 0',
+              minWidth: '150px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              zIndex: 100
+            }}>
+              <div 
+                style={{
+                  padding: '8px 15px',
+                  cursor: 'pointer',
+                  backgroundColor: sortBy === 'price-low' ? '#f5f5f5' : 'transparent'
+                }}
+                onClick={() => handleSortChange('price-low')}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = sortBy === 'price-low' ? '#f5f5f5' : 'transparent'}
+              >
+                Price: Low to High
+              </div>
+              <div 
+                style={{
+                  padding: '8px 15px',
+                  cursor: 'pointer',
+                  backgroundColor: sortBy === 'price-high' ? '#f5f5f5' : 'transparent'
+                }}
+                onClick={() => handleSortChange('price-high')}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = sortBy === 'price-high' ? '#f5f5f5' : 'transparent'}
+              >
+                Price: High to Low
+              </div>
+              <div 
+                style={{
+                  padding: '8px 15px',
+                  cursor: 'pointer',
+                  backgroundColor: sortBy === 'newest' ? '#f5f5f5' : 'transparent'
+                }}
+                onClick={() => handleSortChange('newest')}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = sortBy === 'newest' ? '#f5f5f5' : 'transparent'}
+              >
+                Newest
+              </div>
+              <div 
+                style={{
+                  padding: '8px 15px',
+                  cursor: 'pointer',
+                  backgroundColor: sortBy === 'oldest' ? '#f5f5f5' : 'transparent'
+                }}
+                onClick={() => handleSortChange('oldest')}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = sortBy === 'oldest' ? '#f5f5f5' : 'transparent'}
+              >
+                Oldest
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -694,7 +841,7 @@ function Home() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/homeland">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/buy" element={<Buy />} />
