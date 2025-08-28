@@ -97,6 +97,7 @@ body, html, #root {
   display: block;
 }
 
+
 /* App.css */
 /* ... (all your existing CSS remains the same) ... */
 
@@ -1616,6 +1617,7 @@ body, html, #root {
   text-decoration: underline;
 }
 
+/* App.css (additional styles) */
 /* Properties Dropdown Styles */
 .properties-dropdown {
   position: absolute;
@@ -1636,15 +1638,18 @@ body, html, #root {
   cursor: pointer;
   color: #444;
   font-size: 0.95rem;
-  font-weight: 400; /* professional, not bold */
+  font-weight: 400;
   transition: all 0.2s ease;
   white-space: nowrap;
   line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdown-item:hover {
   background-color: #f9f9f9;
-  color: #65c045; /* subtle professional green */
+  color: #65c045;
 }
 
 /* Divider */
@@ -1659,24 +1664,29 @@ body, html, #root {
   position: relative;
 }
 
-/* ✅ Submenu Items (now appear below main dropdown) */
 .dropdown-submenu-items {
   position: absolute;
-  top: 100%;   /* appear directly below */
-  left: 0;     /* aligned with main dropdown */
-  margin-top: 2px; /* little spacing */
+  top: 0;
+  left: 100%;
   background: #fff;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   padding: 10px 0;
-  width: 100%;  /* ✅ matches main dropdown width */
+  min-width: 180px;
   display: none;
   z-index: 1001;
 }
 
-/* Show submenu on hover */
 .dropdown-submenu:hover .dropdown-submenu-items {
   display: block;
+}
+
+.submenu-trigger {
+  background-color: #f5f5f5;
+}
+
+.submenu-arrow {
+  margin-left: 8px;
 }
 
 /* Animation */
@@ -1688,6 +1698,135 @@ body, html, #root {
 /* Ensure dropdown positions correctly */
 .nav-links li {
   position: relative;
+}
+
+.dropdown-arrow {
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+  .nav-links li.dropdown-open {
+    background-color: #f9f9f9;
+  }
+  
+  .properties-dropdown {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    animation: none;
+  }
+  
+  .dropdown-item {
+    padding: 12px 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+  }
+  
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-submenu-items {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 5px;
+    padding: 0;
+    display: block;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .dropdown-submenu-items .dropdown-item {
+    padding-left: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown-divider {
+    margin: 10px 0;
+  }
+  
+  .dropdown-submenu:hover .dropdown-submenu-items {
+    display: none;
+  }
+  
+  .dropdown-submenu-items.show {
+    display: block;
+  }
+}
+
+/* Dropdown arrow rotation for mobile */
+@media (max-width: 768px) {
+  .nav-links li.dropdown-open .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .submenu-arrow {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-item.submenu-trigger.active .submenu-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* Add these styles to your existing CSS */
+
+/* Mobile submenu styles */
+@media (max-width: 768px) {
+  .dropdown-submenu-items {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 5px;
+    padding: 0;
+    display: block;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .dropdown-submenu-items .dropdown-item {
+    padding-left: 30px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .dropdown-submenu-items .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Add animation for submenu */
+  .dropdown-submenu-items {
+    animation: slideDown 0.3s ease;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 200px; }
+  }
+}
+
+/* Ensure proper spacing for mobile menu items */
+@media (max-width: 768px) {
+  .nav-links li {
+    padding: 12px 0;
+  }
+  
+  .dropdown-item {
+    padding: 10px 15px;
+  }
 }
 
 /* FAQ Section Styles */

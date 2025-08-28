@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaChevronDown, FaChevronRight } from "react-icons/fa";
 import { FaHome, FaShieldAlt, FaChartLine } from 'react-icons/fa';
 
 const properties = [
@@ -140,7 +140,10 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPropertiesDropdown, setShowPropertiesDropdown] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState(false);
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -154,11 +157,46 @@ function Navbar() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Close dropdowns when mobile menu is toggled
+    if (!isMobileMenuOpen) {
+      setShowPropertiesDropdown(false);
+      setShowSubMenu(false);
+      setMobileDropdownOpen(false);
+      setMobileSubMenuOpen(false);
+    }
   };
 
   const handleNavItemClick = (path) => {
     navigate(path);
     setIsMobileMenuOpen(false);
+    setShowPropertiesDropdown(false);
+    setShowSubMenu(false);
+    setMobileDropdownOpen(false);
+    setMobileSubMenuOpen(false);
+  };
+
+  const togglePropertiesDropdown = (e) => {
+    e.stopPropagation();
+    if (window.innerWidth <= 768) {
+      // Mobile behavior - toggle the dropdown
+      setMobileDropdownOpen(!mobileDropdownOpen);
+      setMobileSubMenuOpen(false); // Close submenu when main dropdown is toggled
+    } else {
+      // Desktop behavior - show on hover
+      setShowPropertiesDropdown(!showPropertiesDropdown);
+    }
+    if (showSubMenu) setShowSubMenu(false);
+  };
+
+  const toggleSubMenu = (e) => {
+    e.stopPropagation();
+    if (window.innerWidth <= 768) {
+      // Mobile behavior - toggle the submenu
+      setMobileSubMenuOpen(!mobileSubMenuOpen);
+    } else {
+      // Desktop behavior
+      setShowSubMenu(!showSubMenu);
+    }
   };
 
   return (
@@ -182,35 +220,88 @@ function Navbar() {
             item.label === 'Properties' ? (
               <li 
                 key={item.label}
-                className={location.pathname === item.path ? 'active' : ''}
-                onMouseEnter={() => setShowPropertiesDropdown(true)}
-                onMouseLeave={() => setShowPropertiesDropdown(false)}
+                className={`${location.pathname === item.path ? 'active' : ''} ${(showPropertiesDropdown || mobileDropdownOpen) ? 'dropdown-open' : ''}`}
+                onClick={(e) => {
+                  if (window.innerWidth <= 768) {
+                    togglePropertiesDropdown(e);
+                  } else {
+                    handleNavItemClick(item.path);
+                  }
+                }}
+                onMouseEnter={() => window.innerWidth > 768 && setShowPropertiesDropdown(true)}
+                onMouseLeave={() => window.innerWidth > 768 && setShowPropertiesDropdown(false)}
                 style={{ position: 'relative', userSelect: 'none' }}
               >
-                <span onClick={() => handleNavItemClick(item.path)}>
-                  Properties <span className="dropdown">&#9662;</span>
+                <span>
+                  Properties 
+                  <span className="dropdown-arrow">
+                    {window.innerWidth <= 768 ? 
+                      (mobileDropdownOpen ? <FaChevronDown size={12} /> : <FaChevronRight size={12} />) : 
+                      <FaChevronDown size={12} />
+                    }
+                  </span>
                 </span>
-                {showPropertiesDropdown && (
+                
+                {/* Desktop dropdown */}
+                {window.innerWidth > 768 && showPropertiesDropdown && (
                   <div 
                     className="properties-dropdown"
                     onMouseEnter={() => setShowPropertiesDropdown(true)}
                     onMouseLeave={() => setShowPropertiesDropdown(false)}
                   >
-                    <div className="dropdown-item">Condo</div>
-                    <div className="dropdown-item">Property Land</div>
-                    <div className="dropdown-item">FOR RENT</div>
-                    <div className="dropdown-item">Commercial Building</div>
+                    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/condo')}>Condo</div>
+                    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/land')}>Property Land</div>
+                    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/commercial')}>Commercial Building</div>
                     <div className="dropdown-divider"></div>
                     <div className="dropdown-submenu">
-                      <div className="dropdown-item">Sub Menu</div>
-                      <div className="dropdown-submenu-items">
-                        <div className="dropdown-item">Menu One</div>
-                        <div className="dropdown-item">Menu Two</div>
-                        <div className="dropdown-item">Menu Three</div>
+                      <div 
+                        className="dropdown-item submenu-trigger" 
+                        onClick={toggleSubMenu}
+                        onMouseEnter={() => window.innerWidth > 768 && setShowSubMenu(true)}
+                      >
+                        Sub Menu
+                        <span className="submenu-arrow">
+                          {showSubMenu ? <FaChevronDown size={10} /> : <FaChevronRight size={10} />}
+                        </span>
                       </div>
+                      {showSubMenu && (
+                        <div className="dropdown-submenu-items">
+                          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu1')}>Menu One</div>
+                          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu2')}>Menu Two</div>
+                          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu3')}>Menu Three</div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
+                
+                {/* Mobile dropdown */}
+{window.innerWidth <= 768 && isMobileMenuOpen && mobileDropdownOpen && (
+  <div className="properties-dropdown">
+    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/condo')}>Condo</div>
+    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/land')}>Property Land</div>
+    <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/commercial')}>Commercial Building</div>
+    <div className="dropdown-divider"></div>
+    <div className="dropdown-submenu">
+      <div 
+        className={`dropdown-item submenu-trigger ${mobileSubMenuOpen ? 'active' : ''}`} 
+        onClick={toggleSubMenu}
+      >
+        Sub Menu
+        <span className="submenu-arrow">
+          {mobileSubMenuOpen ? <FaChevronDown size={10} /> : <FaChevronRight size={10} />}
+        </span>
+      </div>
+      {mobileSubMenuOpen && (
+        <div className="dropdown-submenu-items show">
+          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu1')}>Menu One</div>
+          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu2')}>Menu Two</div>
+          <div className="dropdown-item" onClick={() => handleNavItemClick('/properties/sub/menu3')}>Menu Three</div>
+        </div>
+      )}
+    </div>
+  </div>
+)}
               </li>
             ) : (
               <li
