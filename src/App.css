@@ -1,3 +1,4 @@
+/* App.css */
 body, html, #root {
   height: 100%;
   margin: 0;
@@ -13,16 +14,22 @@ body, html, #root {
 }
 
 .navbar {
+  padding: 28px 48px 0 48px;
+}
+
+.navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 48px 0 48px;
+  position: relative;
 }
 
 .logo {
   font-size: 1.7rem;
   font-weight: bold;
   letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure logo stays above menu */
 }
 
 .logo .dot {
@@ -54,6 +61,186 @@ body, html, #root {
   font-size: 0.8em;
   margin-left: 4px;
 }
+
+/* Hamburger menu styles */
+.hamburger-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-icon span {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu overlay */
+.nav-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.nav-menu-overlay.active {
+  display: block;
+}
+
+/* App.css */
+/* ... (all your existing CSS remains the same) ... */
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px;
+  }
+  
+  .hamburger-icon {
+    display: flex;
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Enable scrolling */
+  }
+  
+  .nav-links.mobile-menu-open {
+    right: 0;
+  }
+  
+  .nav-links li {
+    padding: 15px 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    opacity: 1;
+    margin: 0; /* Remove any margins */
+  }
+  
+  .nav-links li.active {
+    color: #7ed957;
+    font-weight: bold;
+  }
+  
+  .properties-dropdown {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    z-index: 1001;
+  }
+  
+  /* Make hamburger icon black when menu is open */
+  .hamburger-icon.mobile-menu-open span {
+    background-color: #000; /* Black color for X icon */
+  }
+}
+
+/* Properties dropdown adjustments for mobile */
+@media (max-width: 768px) {
+  .nav-links li {
+    position: static;
+  }
+  
+  .properties-dropdown {
+    position: static;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    margin-top: 10px;
+  }
+  
+  .dropdown-item {
+    padding: 12px 15px;
+  }
+}
+
+/* Hamburger animation when menu is open */
+.hamburger-icon.mobile-menu-open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-icon.mobile-menu-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.mobile-menu-open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Ensure the menu doesn't exceed viewport height and is properly scrollable */
+@media (max-width: 768px) {
+  .nav-links {
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .nav-links li:last-child {
+    margin-bottom: 20px; /* Add some space at the bottom */
+  }
+}
+
+/* Adjust menu item spacing to fit all options */
+@media (max-width: 768px) {
+  .nav-links li {
+    padding: 12px 0; /* Slightly reduce padding */
+    font-size: 0.9rem; /* Slightly smaller font */
+  }
+  
+  /* Ensure all menu items are visible with proper spacing */
+  .nav-links {
+    gap: 0; /* Remove any gaps between items */
+  }
+}
+
+/* Make sure the menu is properly scrollable on very small screens */
+@media (max-height: 667px) and (max-width: 768px) {
+  .nav-links {
+    padding-top: 70px; /* Reduce top padding */
+  }
+  
+  .nav-links li {
+    padding: 10px 0; /* Further reduce padding */
+  }
+}
+
+/* ... (rest of your CSS remains the same) */
 
 .hero-content {
   position: absolute;
@@ -2069,5 +2256,72 @@ body, html, #root {
   
   .send-message-btn {
     width: 100%;
+  }
+}
+
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+  .nav-links li.dropdown-open {
+    background-color: #f9f9f9;
+  }
+  
+  .properties-dropdown {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    animation: none;
+  }
+  
+  .dropdown-item {
+    padding: 12px 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+  }
+  
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-submenu-items {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    margin-top: 5px;
+    padding: 0;
+    display: block;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .dropdown-submenu-items .dropdown-item {
+    padding-left: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown-divider {
+    margin: 10px 0;
+  }
+}
+
+/* Dropdown arrow rotation for mobile */
+@media (max-width: 768px) {
+  .nav-links li.dropdown-open .dropdown {
+    transform: rotate(180deg);
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown-submenu .dropdown {
+    transform: rotate(90deg);
+  }
+  
+  .dropdown-submenu .dropdown-item.active .dropdown {
+    transform: rotate(-90deg);
   }
 }

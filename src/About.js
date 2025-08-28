@@ -7,6 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPropertiesDropdown, setShowPropertiesDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -18,58 +19,79 @@ function Navbar() {
     { label: 'Contact', path: '/contact' },
   ];
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleNavItemClick = (path) => {
+    navigate(path);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
-      <div className="logo" onClick={() => navigate('/')}>
-        Homeland<span className="dot">.</span>
-      </div>
-      <ul className="nav-links">
-        {navItems.map((item) =>
-          item.label === 'Properties' ? (
-            <li 
-              key={item.label}
-              className={location.pathname === item.path ? 'active' : ''}
-              onMouseEnter={() => setShowPropertiesDropdown(true)}
-              onMouseLeave={() => setShowPropertiesDropdown(false)}
-              style={{ position: 'relative', userSelect: 'none' }}
-            >
-              <span>
-                Properties <span className="dropdown">&#9662;</span>
-              </span>
-              {showPropertiesDropdown && (
-                <div 
-                  className="properties-dropdown"
-                  onMouseEnter={() => setShowPropertiesDropdown(true)}
-                  onMouseLeave={() => setShowPropertiesDropdown(false)}
-                >
-                  <div className="dropdown-item">Condo</div>
-                  <div className="dropdown-item">Property Land</div>
-                  <div className="dropdown-item">FOR RENT</div>
-                  <div className="dropdown-item">Commercial Building</div>
-                  <div className="dropdown-divider"></div>
-                  <div className="dropdown-submenu">
-                    <div className="dropdown-item">Sub Menu</div>
-                    <div className="dropdown-submenu-items">
-                      <div className="dropdown-item">Menu One</div>
-                      <div className="dropdown-item">Menu Two</div>
-                      <div className="dropdown-item">Menu Three</div>
+      <div className="navbar-container">
+        <div className="logo" onClick={() => navigate('/')}>
+          Homeland<span className="dot">.</span>
+        </div>
+        
+        {/* Hamburger icon for mobile */}
+        <div className={`hamburger-icon ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`} onClick={toggleMobileMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        
+        <div className={`nav-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`} onClick={toggleMobileMenu}></div>
+        
+        <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+          {navItems.map((item) =>
+            item.label === 'Properties' ? (
+              <li 
+                key={item.label}
+                className={location.pathname === item.path ? 'active' : ''}
+                onMouseEnter={() => setShowPropertiesDropdown(true)}
+                onMouseLeave={() => setShowPropertiesDropdown(false)}
+                style={{ position: 'relative', userSelect: 'none' }}
+              >
+                <span onClick={() => handleNavItemClick(item.path)}>
+                  Properties <span className="dropdown">&#9662;</span>
+                </span>
+                {showPropertiesDropdown && (
+                  <div 
+                    className="properties-dropdown"
+                    onMouseEnter={() => setShowPropertiesDropdown(true)}
+                    onMouseLeave={() => setShowPropertiesDropdown(false)}
+                  >
+                    <div className="dropdown-item">Condo</div>
+                    <div className="dropdown-item">Property Land</div>
+                    <div className="dropdown-item">FOR RENT</div>
+                    <div className="dropdown-item">Commercial Building</div>
+                    <div className="dropdown-divider"></div>
+                    <div className="dropdown-submenu">
+                      <div className="dropdown-item">Sub Menu</div>
+                      <div className="dropdown-submenu-items">
+                        <div className="dropdown-item">Menu One</div>
+                        <div className="dropdown-item">Menu Two</div>
+                        <div className="dropdown-item">Menu Three</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </li>
-          ) : (
-            <li
-              key={item.label}
-              className={location.pathname === item.path ? 'active' : ''}
-              onClick={() => navigate(item.path)}
-              style={{ userSelect: 'none' }}
-            >
-              {item.label}
-            </li>
-          )
-        )}
-      </ul>
+                )}
+              </li>
+            ) : (
+              <li
+                key={item.label}
+                className={location.pathname === item.path ? 'active' : ''}
+                onClick={() => handleNavItemClick(item.path)}
+                style={{ userSelect: 'none' }}
+              >
+                {item.label}
+              </li>
+            )
+          )}
+        </ul>
+      </div>
     </nav>
   );
 }
