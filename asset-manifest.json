@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/homeland/static/css/main.d24749d9.css",
+    "main.css": "/homeland/static/css/main.6506e08e.css",
     "main.js": "/homeland/static/js/main.a37df77a.js",
     "static/js/453.77cc6b03.chunk.js": "/homeland/static/js/453.77cc6b03.chunk.js",
     "index.html": "/homeland/index.html",
-    "main.d24749d9.css.map": "/homeland/static/css/main.d24749d9.css.map",
+    "main.6506e08e.css.map": "/homeland/static/css/main.6506e08e.css.map",
     "main.a37df77a.js.map": "/homeland/static/js/main.a37df77a.js.map",
     "453.77cc6b03.chunk.js.map": "/homeland/static/js/453.77cc6b03.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d24749d9.css",
+    "static/css/main.6506e08e.css",
     "static/js/main.a37df77a.js"
   ]
 }
