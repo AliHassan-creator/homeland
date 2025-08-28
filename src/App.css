@@ -1,5 +1,7 @@
 /* App.css */
-body, html, #root {
+body,
+html,
+#root {
   height: 100%;
   margin: 0;
   font-family: 'Montserrat', Arial, sans-serif;
@@ -29,7 +31,8 @@ body, html, #root {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  z-index: 1001; /* Ensure logo stays above menu */
+  z-index: 1001;
+  /* Ensure logo stays above menu */
 }
 
 .logo .dot {
@@ -107,15 +110,15 @@ body, html, #root {
     padding: 20px;
     position: relative;
   }
-  
+
   .hamburger-icon {
     display: flex;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1001;
   }
-  
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -132,11 +135,11 @@ body, html, #root {
     overflow-y: auto;
     margin: 0;
   }
-  
+
   .nav-links.mobile-menu-open {
     right: 0;
   }
-  
+
   .nav-links li {
     padding: 15px 0;
     color: #333;
@@ -145,12 +148,12 @@ body, html, #root {
     opacity: 1;
     margin: 0;
   }
-  
+
   .nav-links li.active {
     color: #7ed957;
     font-weight: bold;
   }
-  
+
   .properties-dropdown {
     position: static;
     width: 100%;
@@ -161,13 +164,13 @@ body, html, #root {
     max-height: 300px;
     overflow-y: auto;
   }
-  
+
   .logo {
     font-size: 1.5rem;
     z-index: 1001;
     position: relative;
   }
-  
+
   /* Make hamburger icon black when menu is open */
   .hamburger-icon.mobile-menu-open span {
     background-color: #000;
@@ -179,7 +182,7 @@ body, html, #root {
   .nav-links li {
     position: static;
   }
-  
+
   .properties-dropdown {
     position: static;
     display: block;
@@ -188,7 +191,7 @@ body, html, #root {
     border: none;
     margin-top: 10px;
   }
-  
+
   .dropdown-item {
     padding: 12px 15px;
   }
@@ -215,33 +218,39 @@ body, html, #root {
     flex-direction: column;
     justify-content: flex-start;
   }
-  
+
   .nav-links li:last-child {
-    margin-bottom: 20px; /* Add some space at the bottom */
+    margin-bottom: 20px;
+    /* Add some space at the bottom */
   }
 }
 
 /* Adjust menu item spacing to fit all options */
 @media (max-width: 768px) {
   .nav-links li {
-    padding: 12px 0; /* Slightly reduce padding */
-    font-size: 0.9rem; /* Slightly smaller font */
+    padding: 12px 0;
+    /* Slightly reduce padding */
+    font-size: 0.9rem;
+    /* Slightly smaller font */
   }
-  
+
   /* Ensure all menu items are visible with proper spacing */
   .nav-links {
-    gap: 0; /* Remove any gaps between items */
+    gap: 0;
+    /* Remove any gaps between items */
   }
 }
 
 /* Make sure the menu is properly scrollable on very small screens */
 @media (max-height: 667px) and (max-width: 768px) {
   .nav-links {
-    padding-top: 70px; /* Reduce top padding */
+    padding-top: 70px;
+    /* Reduce top padding */
   }
-  
+
   .nav-links li {
-    padding: 10px 0; /* Further reduce padding */
+    padding: 10px 0;
+    /* Further reduce padding */
   }
 }
 
@@ -306,7 +315,7 @@ body, html, #root {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(34,34,34,0.3);
+  background: rgba(34, 34, 34, 0.3);
   border: none;
   color: #fff;
   font-size: 1.7rem;
@@ -327,7 +336,7 @@ body, html, #root {
 }
 
 .arrow-btn:hover {
-  background: rgba(126,217,87,0.8);
+  background: rgba(126, 217, 87, 0.8);
 }
 
 .hero-section.fade {
@@ -335,8 +344,13 @@ body, html, #root {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0.2; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.2;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .page-content {
@@ -474,7 +488,7 @@ body, html, #root {
 .property-card-grid {
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 2px 16px 0 rgba(34,34,34,0.08);
+  box-shadow: 0 2px 16px 0 rgba(34, 34, 34, 0.08);
   overflow: hidden;
   width: 370px;
   margin-top: 32px;
@@ -485,7 +499,7 @@ body, html, #root {
 }
 
 .property-card-grid:hover {
-  box-shadow: 0 4px 32px 0 rgba(34,34,34,0.13);
+  box-shadow: 0 4px 32px 0 rgba(34, 34, 34, 0.13);
 }
 
 .property-img-wrap {
@@ -523,9 +537,17 @@ body, html, #root {
   letter-spacing: 1px;
 }
 
-.property-status-sale { background: #ff4d4d; }
-.property-status-rent { background: #7ed957; }
-.property-status-lease { background: #2d9cdb; }
+.property-status-sale {
+  background: #ff4d4d;
+}
+
+.property-status-rent {
+  background: #7ed957;
+}
+
+.property-status-lease {
+  background: #2d9cdb;
+}
 
 .property-like-btn {
   position: absolute;
@@ -540,7 +562,7 @@ body, html, #root {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px 0 rgba(34,34,34,0.10);
+  box-shadow: 0 2px 8px 0 rgba(34, 34, 34, 0.10);
   font-size: 1.5rem;
   color: #ff4d4d;
   transition: background 0.2s;
@@ -604,7 +626,7 @@ body, html, #root {
 .property-card-list {
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 2px 16px 0 rgba(34,34,34,0.08);
+  box-shadow: 0 2px 16px 0 rgba(34, 34, 34, 0.08);
   overflow: hidden;
   width: 90%;
   max-width: 1400px;
@@ -617,7 +639,7 @@ body, html, #root {
 }
 
 .property-card-list:hover {
-  box-shadow: 0 4px 32px 0 rgba(34,34,34,0.13);
+  box-shadow: 0 4px 32px 0 rgba(34, 34, 34, 0.13);
 }
 
 .property-img-wrap-list {
@@ -660,7 +682,7 @@ body, html, #root {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px 0 rgba(34,34,34,0.10);
+  box-shadow: 0 2px 8px 0 rgba(34, 34, 34, 0.10);
   font-size: 2rem;
   color: #ff4d4d;
   transition: background 0.2s;
@@ -927,7 +949,7 @@ body, html, #root {
     max-width: 95%;
     padding: 40px 30px 30px 30px;
   }
-  
+
   .property-grid-bar {
     padding: 28px 20px 15px 20px;
     max-width: 95%;
@@ -939,35 +961,35 @@ body, html, #root {
   .navbar {
     padding: 20px 30px 0 30px;
   }
-  
+
   .nav-links {
     gap: 20px;
     font-size: 0.95rem;
   }
-  
+
   .property-filter-bar {
     flex-wrap: wrap;
     margin: -30px 20px 0 20px;
     padding: 30px 25px 25px 25px;
   }
-  
+
   .property-filter-group {
     min-width: 160px;
   }
-  
+
   .property-title {
     font-size: 1.8rem;
   }
-  
+
   .property-price {
     font-size: 1.3rem;
   }
-  
+
   .property-info-grid,
   .property-info-list {
     gap: 20px;
   }
-  
+
   .why-choose-us-features,
   .blog-posts {
     justify-content: center;
@@ -981,124 +1003,124 @@ body, html, #root {
     padding: 15px 20px 0 20px;
     gap: 15px;
   }
-  
+
   .nav-links {
     gap: 15px;
     font-size: 0.9rem;
     flex-wrap: wrap;
-    justify-content: center;
+    padding-top: 77px;
   }
-  
+
   .hero-content {
     transform: translate(-50%, -40%);
     padding: 0 15px;
   }
-  
+
   .property-title {
     font-size: 1.5rem;
     letter-spacing: 2px;
   }
-  
+
   .property-price {
     font-size: 1.1rem;
   }
-  
+
   .for-rent-btn,
   .see-details-btn {
     padding: 8px 16px;
     font-size: 0.9rem;
   }
-  
+
   .property-filter-bar {
     flex-direction: column;
     gap: 15px;
     margin: -20px 15px 0 15px;
     padding: 25px 20px 20px 20px;
   }
-  
+
   .property-filter-group {
     width: 100%;
   }
-  
+
   .property-search-btn {
     width: 100%;
     margin-top: 5px;
   }
-  
+
   .property-grid-bar {
     flex-direction: column;
     gap: 12px;
     padding: 20px 15px 12px 15px;
     align-items: flex-start;
   }
-  
+
   .property-sort-bar {
     margin-left: 0;
     gap: 12px;
     font-size: 1rem;
   }
-  
+
   .property-card-list {
     flex-direction: column;
     min-height: unset;
     width: 98%;
     max-width: 98vw;
   }
-  
+
   .property-img-wrap-list {
     width: 100%;
     min-width: unset;
     height: 220px;
   }
-  
+
   .property-card-body-list {
     width: 100%;
     padding: 22px 18px 18px 18px;
   }
-  
+
   .property-listings-grid {
     gap: 20px;
   }
-  
+
   .property-card-grid {
     width: 90vw;
     max-width: 400px;
   }
-  
+
   .property-info-grid {
     flex-wrap: wrap;
     gap: 15px;
   }
-  
+
   .property-info-list {
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .arrow-btn {
     width: 32px;
     height: 32px;
     font-size: 1.4rem;
   }
-  
+
   .arrow-btn.left {
     left: 10px;
   }
-  
+
   .arrow-btn.right {
     right: 10px;
   }
-  
+
   .why-choose-us-section,
   .recent-blog-section {
     padding: 60px 0;
   }
-  
+
   .why-choose-us-header,
   .recent-blog-header {
     margin-bottom: 40px;
   }
-  
+
   .feature-card,
   .blog-post {
     min-width: 100%;
@@ -1111,181 +1133,181 @@ body, html, #root {
   .navbar {
     padding: 12px 15px 0 15px;
   }
-  
+
   .logo {
     font-size: 1.4rem;
   }
-  
+
   .nav-links {
     gap: 10px;
     font-size: 0.85rem;
   }
-  
+
   .hero-content {
     transform: translate(-50%, -35%);
   }
-  
+
   .property-title {
     font-size: 1.2rem;
     letter-spacing: 1px;
   }
-  
+
   .property-price {
     font-size: 1rem;
     margin-bottom: 15px;
   }
-  
+
   .for-rent-btn {
     padding: 6px 14px;
     font-size: 0.85rem;
     margin-bottom: 12px;
   }
-  
+
   .see-details-btn {
     padding: 8px 20px;
     font-size: 0.9rem;
   }
-  
+
   .property-filter-bar {
     margin: -15px 10px 0 10px;
     padding: 20px 15px 15px 15px;
     gap: 12px;
   }
-  
+
   .property-filter-group label {
     font-size: 0.85rem;
   }
-  
+
   .property-filter-group select {
     font-size: 0.9rem;
     padding: 10px 12px;
     height: 40px;
   }
-  
+
   .property-search-btn {
     font-size: 1rem;
     padding: 12px 20px;
     height: 40px;
   }
-  
+
   .property-grid-bar {
     padding: 15px 10px 10px 10px;
   }
-  
+
   .property-grid-icon {
     font-size: 0.9rem;
   }
-  
+
   .property-sort-bar {
     font-size: 0.9rem;
     gap: 8px;
   }
-  
+
   .property-listings-grid,
   .property-listings-list {
     gap: 15px;
   }
-  
+
   .property-card-grid {
     width: 95vw;
     margin-top: 20px;
   }
-  
+
   .property-img-wrap {
     height: 180px;
   }
-  
+
   .property-card-body {
     padding: 15px;
     gap: 6px;
   }
-  
+
   .property-title-grid {
     font-size: 1.1rem;
   }
-  
+
   .property-price-grid {
     font-size: 1.2rem;
   }
-  
+
   .property-info-grid {
     font-size: 0.85rem;
     gap: 12px;
   }
-  
+
   .property-info-grid span b {
     font-size: 1rem;
   }
-  
+
   .property-card-list {
     width: 95vw;
     margin-top: 20px;
   }
-  
+
   .property-img-wrap-list {
     height: 180px;
   }
-  
+
   .property-card-body-list {
     padding: 15px;
   }
-  
+
   .property-title-list {
     font-size: 1.2rem;
   }
-  
+
   .property-price-list {
     font-size: 1.3rem;
   }
-  
+
   .property-desc-list {
     font-size: 0.95rem;
   }
-  
+
   .property-info-list {
     font-size: 0.9rem;
     gap: 15px;
   }
-  
+
   .property-info-list span b {
     font-size: 1rem;
   }
-  
+
   .property-like-btn {
     width: 36px;
     height: 36px;
     font-size: 1.2rem;
   }
-  
+
   .property-like-btn-list {
     width: 44px;
     height: 44px;
     font-size: 1.6rem;
   }
-  
+
   .why-choose-us-header h2,
   .recent-blog-header h2 {
     font-size: 26px;
   }
-  
+
   .why-choose-us-header p,
   .recent-blog-header p {
     font-size: 14px;
   }
-  
+
   .feature-card,
   .blog-post {
     padding: 20px;
   }
-  
+
   .feature-card h3 {
     font-size: 18px;
   }
-  
+
   .feature-card p {
     font-size: 14px;
   }
-  
+
   .blog-post-content {
     font-size: 14px;
   }
@@ -1298,26 +1320,26 @@ body, html, #root {
     align-items: center;
     gap: 8px;
   }
-  
+
   .hero-content {
     transform: translate(-50%, -30%);
   }
-  
+
   .property-title {
     font-size: 1.1rem;
   }
-  
+
   .property-status {
     font-size: 0.85rem;
     padding: 2px 8px;
   }
-  
+
   .property-info-grid,
   .property-info-list {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .arrow-btn {
     display: none;
   }
@@ -1453,6 +1475,7 @@ body, html, #root {
 .facebook {
   background-color: #3b5998;
 }
+
 .facebook:hover {
   background-color: #2d4373;
 }
@@ -1460,6 +1483,7 @@ body, html, #root {
 .twitter {
   background-color: #1da1f2;
 }
+
 .twitter:hover {
   background-color: #0c85d0;
 }
@@ -1467,20 +1491,20 @@ body, html, #root {
 .linkedin {
   background-color: #0077b5;
 }
+
 .linkedin:hover {
   background-color: #005983;
 }
 
 .instagram {
-  background: radial-gradient(
-    circle at 30% 107%,
-    #fdf497 0%,
-    #fdf497 5%,
-    #fd5949 45%,
-    #d6249f 60%,
-    #285aeb 90%
-  );
+  background: radial-gradient(circle at 30% 107%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%);
 }
+
 .instagram:hover {
   opacity: 0.85;
 }
@@ -1695,8 +1719,15 @@ body, html, #root {
 
 /* Animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Ensure dropdown positions correctly */
@@ -1715,7 +1746,7 @@ body, html, #root {
   .nav-links li.dropdown-open {
     background-color: #f9f9f9;
   }
-  
+
   .properties-dropdown {
     position: static;
     width: 100%;
@@ -1727,18 +1758,18 @@ body, html, #root {
     overflow-y: auto;
     animation: none;
   }
-  
+
   .dropdown-item {
     padding: 12px 15px;
     color: #333;
     border-bottom: 1px solid #eee;
     font-weight: 500;
   }
-  
+
   .dropdown-item:last-child {
     border-bottom: none;
   }
-  
+
   .dropdown-submenu-items {
     position: static;
     width: 100%;
@@ -1749,20 +1780,20 @@ body, html, #root {
     background-color: #f1f1f1;
     border-radius: 4px;
   }
-  
+
   .dropdown-submenu-items .dropdown-item {
     padding-left: 30px;
     font-size: 0.9rem;
   }
-  
+
   .dropdown-divider {
     margin: 10px 0;
   }
-  
+
   .dropdown-submenu:hover .dropdown-submenu-items {
     display: none;
   }
-  
+
   .dropdown-submenu-items.show {
     display: block;
   }
@@ -1773,12 +1804,12 @@ body, html, #root {
   .nav-links li.dropdown-open .dropdown-arrow {
     transform: rotate(180deg);
   }
-  
+
   .submenu-arrow {
     transform: rotate(0deg);
     transition: transform 0.3s ease;
   }
-  
+
   .dropdown-item.submenu-trigger.active .submenu-arrow {
     transform: rotate(90deg);
   }
@@ -1800,25 +1831,32 @@ body, html, #root {
     max-height: none;
     overflow: visible;
   }
-  
+
   .dropdown-submenu-items .dropdown-item {
     padding-left: 30px;
     font-size: 0.9rem;
     border-bottom: 1px solid #e5e5e5;
   }
-  
+
   .dropdown-submenu-items .dropdown-item:last-child {
     border-bottom: none;
   }
-  
+
   /* Add animation for submenu */
   .dropdown-submenu-items {
     animation: slideDown 0.3s ease;
   }
-  
+
   @keyframes slideDown {
-    from { opacity: 0; max-height: 0; }
-    to { opacity: 1; max-height: 200px; }
+    from {
+      opacity: 0;
+      max-height: 0;
+    }
+
+    to {
+      opacity: 1;
+      max-height: 200px;
+    }
   }
 }
 
@@ -1827,7 +1865,7 @@ body, html, #root {
   .nav-links li {
     padding: 12px 0;
   }
-  
+
   .dropdown-item {
     padding: 10px 15px;
   }
@@ -2074,29 +2112,30 @@ body, html, #root {
 
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
+
   .our-agents-header h2,
   .faq-header h2,
   .contact-form h2,
   .contact-info h2 {
     font-size: 28px;
   }
-  
+
   .agent-card {
     min-width: 280px;
   }
-  
+
   .agent-image {
     height: 280px;
   }
-  
+
   .faq-question h3 {
     font-size: 17px;
   }
-  
+
   .contact-container {
     gap: 40px;
   }
-  
+
   .contact-form,
   .contact-details {
     padding: 30px;
@@ -2105,130 +2144,131 @@ body, html, #root {
 
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
+
   .our-agents-section,
   .faq-section,
   .contact-section {
     padding: 60px 0;
   }
-  
+
   .our-agents-header,
   .faq-header {
     margin-bottom: 40px;
   }
-  
+
   .agents-list {
     flex-direction: column;
     align-items: center;
     gap: 25px;
   }
-  
+
   .agent-card {
     max-width: 100%;
     min-width: unset;
     width: 100%;
   }
-  
+
   .agent-image {
     height: 250px;
   }
-  
+
   .agent-details h3 {
     font-size: 20px;
   }
-  
+
   .footer-container {
     flex-direction: column;
   }
-  
+
   .footer-section {
     margin-bottom: 40px;
     padding: 0 10px;
   }
-  
+
   .footer-navigation {
     flex-direction: column;
   }
-  
+
   .footer-nav-column {
     margin-bottom: 20px;
     min-width: 100%;
   }
-  
+
   .footer-social-icons {
     justify-content: center;
   }
-  
+
   .properties-dropdown {
     min-width: 200px;
   }
-  
+
   .dropdown-item {
     padding: 10px 20px;
     font-size: 0.9rem;
   }
-  
+
   .faq-question {
     padding: 15px;
   }
-  
+
   .faq-question h3 {
     font-size: 16px;
   }
-  
+
   .faq-toggle {
     width: 25px;
     height: 25px;
     font-size: 18px;
   }
-  
+
   .faq-answer {
     padding: 0 15px 15px 15px;
   }
-  
+
   .faq-answer p {
     font-size: 15px;
   }
-  
+
   .contact-container {
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .form-row {
     flex-direction: column;
     gap: 0;
   }
-  
+
   .contact-form,
   .contact-details {
     padding: 25px;
   }
-  
+
   .contact-form h2,
   .contact-info h2 {
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
+
   .form-group input,
   .form-group textarea {
     padding: 12px;
     font-size: 15px;
   }
-  
+
   .send-message-btn {
     padding: 12px 25px;
     font-size: 15px;
   }
-  
+
   .contact-item {
     margin-bottom: 20px;
   }
-  
+
   .contact-item h3 {
     font-size: 16px;
   }
-  
+
   .contact-item p {
     font-size: 15px;
   }
@@ -2236,127 +2276,128 @@ body, html, #root {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+
   .our-agents-section,
   .faq-section,
   .contact-section {
     padding: 50px 0;
   }
-  
+
   .our-agents-container,
   .faq-container,
   .contact-container {
     padding: 0 15px;
   }
-  
+
   .our-agents-header h2,
   .faq-header h2 {
     font-size: 24px;
   }
-  
+
   .our-agents-header p,
   .faq-header p {
     font-size: 14px;
   }
-  
+
   .agent-image {
     height: 220px;
   }
-  
+
   .agent-details {
     padding: 15px;
   }
-  
+
   .agent-details h3 {
     font-size: 18px;
   }
-  
+
   .agent-title,
   .agent-description {
     font-size: 14px;
   }
-  
+
   .social-btn {
     width: 34px;
     height: 34px;
     font-size: 14px;
   }
-  
+
   .footer {
     padding: 40px 0 20px;
   }
-  
+
   .footer-section h3 {
     font-size: 16px;
     margin-bottom: 20px;
   }
-  
+
   .footer-about p {
     font-size: 14px;
   }
-  
+
   .footer-nav-column h4 {
     font-size: 15px;
   }
-  
+
   .footer-nav-links a {
     font-size: 13px;
   }
-  
+
   .social-icon {
     width: 36px;
     height: 36px;
     font-size: 14px;
   }
-  
+
   .footer-bottom p {
     font-size: 13px;
   }
-  
+
   .properties-dropdown {
     min-width: 180px;
     left: -50%;
     transform: translateX(25%);
   }
-  
+
   .dropdown-item {
     padding: 8px 16px;
     font-size: 0.85rem;
   }
-  
+
   .faq-header {
     margin-bottom: 30px;
   }
-  
+
   .faq-question {
     padding: 12px;
   }
-  
+
   .faq-question h3 {
     font-size: 15px;
   }
-  
+
   .faq-answer p {
     font-size: 14px;
   }
-  
+
   .contact-form,
   .contact-details {
     padding: 20px;
   }
-  
+
   .contact-form h2,
   .contact-info h2 {
     font-size: 22px;
   }
-  
+
   .form-group {
     margin-bottom: 15px;
   }
-  
+
   .contact-item h3 {
     font-size: 15px;
   }
-  
+
   .contact-item p {
     font-size: 14px;
   }
@@ -2364,39 +2405,40 @@ body, html, #root {
 
 /* Very small devices (less than 400px) */
 @media (max-width: 399.98px) {
+
   .our-agents-header h2,
   .faq-header h2 {
     font-size: 22px;
   }
-  
+
   .agent-image {
     height: 200px;
   }
-  
+
   .agent-socials {
     gap: 8px;
   }
-  
+
   .social-btn {
     width: 32px;
     height: 32px;
   }
-  
+
   .footer-section {
     min-width: 100%;
   }
-  
+
   .properties-dropdown {
     min-width: 160px;
     left: -70%;
     transform: translateX(35%);
   }
-  
+
   .contact-form h2,
   .contact-info h2 {
     font-size: 20px;
   }
-  
+
   .send-message-btn {
     width: 100%;
   }
@@ -2407,7 +2449,7 @@ body, html, #root {
   .nav-links li.dropdown-open {
     background-color: #f9f9f9;
   }
-  
+
   .properties-dropdown {
     position: static;
     width: 100%;
@@ -2419,18 +2461,18 @@ body, html, #root {
     overflow-y: auto;
     animation: none;
   }
-  
+
   .dropdown-item {
     padding: 12px 15px;
     color: #333;
     border-bottom: 1px solid #eee;
     font-weight: 500;
   }
-  
+
   .dropdown-item:last-child {
     border-bottom: none;
   }
-  
+
   .dropdown-submenu-items {
     position: static;
     width: 100%;
@@ -2441,12 +2483,12 @@ body, html, #root {
     background-color: #f1f1f1;
     border-radius: 4px;
   }
-  
+
   .dropdown-submenu-items .dropdown-item {
     padding-left: 30px;
     font-size: 0.9rem;
   }
-  
+
   .dropdown-divider {
     margin: 10px 0;
   }
@@ -2459,13 +2501,12 @@ body, html, #root {
     display: inline-block;
     transition: transform 0.3s ease;
   }
-  
+
   .dropdown-submenu .dropdown {
     transform: rotate(90deg);
   }
-  
+
   .dropdown-submenu .dropdown-item.active .dropdown {
     transform: rotate(-90deg);
   }
 }
-
